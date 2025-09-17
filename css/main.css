@@ -4,11 +4,58 @@
 
 html,
 body,
-#viewDiv {
+#mapViews {
   padding: 0;
   margin: 0;
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 1 for row header, 5 for maps, 1 for graph */
+  grid-template-rows: auto repeat(4, 1fr);         /* 1 for column header, 4 for data rows */
+  gap: 0px 0px;
+  grid-template-areas:
+    "viewColChart viewCol2017 viewCol2021 viewCol2023 viewCol2025"
+    "chart1Div view12017Div view12021Div view12023Div view12025Div"
+    "chart2Div view22017Div view22021Div view22023Div view22025Div"
+    "chart3Div view32017Div view32021Div view32023Div view32025Div"
+    "chart4Div view42017Div view42021Div view42023Div view42025Div";
+}
+
+#viewColChart    { grid-area: viewColChart; }
+#viewCol2017    { grid-area: viewCol2017; }
+#viewCol2021    { grid-area: viewCol2021; }
+#viewCol2023    { grid-area: viewCol2023; }
+#viewCol2025    { grid-area: viewCol2025; }
+
+#chart1Div    { grid-area: chart1Div; }
+#view12017Div { grid-area: view12017Div; }
+#view12021Div { grid-area: view12021Div; }
+#view12023Div { grid-area: view12023Div; }
+#view12025Div { grid-area: view12025Div; }
+
+#chart2Div    { grid-area: chart2Div; }
+#view22017Div { grid-area: view22017Div; }
+#view22021Div { grid-area: view22021Div; }
+#view22023Div { grid-area: view22023Div; }
+#view22025Div { grid-area: view22025Div; }
+
+#chart3Div    { grid-area: chart3Div; }
+#view32017Div { grid-area: view32017Div; }
+#view32021Div { grid-area: view32021Div; }
+#view32023Div { grid-area: view32023Div; }
+#view32025Div { grid-area: view32025Div; }
+
+#chart4Div    { grid-area: chart4Div; }
+#view42017Div { grid-area: view42017Div; }
+#view42021Div { grid-area: view42021Div; }
+#view42023Div { grid-area: view42023Div; }
+#view42025Div { grid-area: view42025Div; }
+
+.tempChart {
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box;
+  padding: 0.5rem;
 }
 
 calcite-loader {
@@ -50,4 +97,15 @@ calcite-loader {
 
 calcite-rating {
   margin-top: 0.25rem;
+}
+
+.grid-header {
+  background: #222;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #444;
+  border-right: 1px solid #444;
 }

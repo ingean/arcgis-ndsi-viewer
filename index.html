@@ -12,10 +12,11 @@
     <script type="importmap">
       {
         "imports": {
-          "@arcgis/": "https://js.arcgis.com/4.30/@arcgis/"
+          "@arcgis/": "https://js.arcgis.com/4.33/@arcgis/"
         }
       }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script type="module" src="https://js.arcgis.com/map-components/4.30/arcgis-map-components.esm.js"></script>
     <link id="jsapi-theme-light" rel="stylesheet" href="https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/light/main.css" disabled>
     <link id="jsapi-theme-dark" rel="stylesheet" href="https://js.arcgis.com/4.30/@arcgis/core/assets/esri/themes/dark/main.css" />
@@ -34,7 +35,7 @@
           <calcite-navigation-user slot="user"></calcite-navigation-user>
         </calcite-navigation>
 
-        <calcite-loader active></calcite-loader>
+     <!--    <calcite-loader active></calcite-loader>
 
         <calcite-shell-panel slot="panel-start" detached>
           <calcite-action-bar slot="action-bar" intl-collapse="Minimere" intl-expand="Maksimere">
@@ -46,7 +47,7 @@
             <calcite-action data-action-id="information" icon="information" text="Informasjon"></calcite-action>
           </calcite-action-bar>
 
-          <!-- Map Components Panels -->
+    
           <calcite-panel heading="Kartlag" height-scale="l" width-scale="m" data-panel-id="layers">
             <arcgis-layer-list id="layers-container" reference-element="viewDiv"></arcgis-layer-list>
           </calcite-panel>
@@ -59,31 +60,59 @@
           <calcite-panel heading="Bokmerker" height-scale="l" width-scale="m" data-panel-id="bookmarks" hidden>
             <arcgis-bookmarks id="bookmarks-container" reference-element="viewDiv"></arcgis-bookmarks>
           </calcite-panel>
-          <calcite-panel heading="Utskrift" height-scale="l" width-scale="m" data-panel-id="print" hidden>
-            <arcgis-print id="print-container" reference-element="viewDiv" include-default-templates="false" allowed-formats="all" allowed-layouts="all"></arcgis-print>
-          </calcite-panel>
+        </calcite-shell-panel> -->
 
-          <!-- Custom Panels -->
-          <calcite-panel heading="Informasjon" data-panel-id="information" hidden>
-            <div id="info-content">
-              <img id="item-thumbnail" />
-              <div id="item-description">
-                <!--dynamically populated-->
-              </div>
-              <calcite-label layout="inline">
-                <b>Vurdering:</b>
-                <calcite-rating read-only>
-                  <!--dynamically populated-->
-                </calcite-rating>
-              </calcite-label>
-            </div>
-          </calcite-panel>
-        </calcite-shell-panel>
+        <div id="mapViews">
+          <!-- Header Row: Empty cell for corner, then year titles -->
+          <div id="viewColChart" class="grid-header"></div> <!-- For graph column -->
+          <div id="viewCol2017" class="grid-header">2017</div>
+          <!--div id="viewCol2018" class="grid-header">2018</div-->
+          <div id="viewCol2021" class="grid-header">2021</div>
+          <div id="viewCol2023" class="grid-header">2023</div>
+          <div id="viewCol2025" class="grid-header">2025</div>
+          
+
+          <!-- Row 1 -->
+          <div id="chart1Div">
+            <canvas id="temporalChart1" class="esri-widget tempChart"></canvas>
+          </div>
+          <arcgis-map id="view12017Div" class="viewDiv"></arcgis-map>
+          <!--arcgis-map id="view12018Div" class="viewDiv"></arcgis-map-->
+          <arcgis-map id="view12021Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view12023Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view12025Div" class="viewDiv"></arcgis-map>
+
+          <!-- Row 2 -->
+          <div id="chart2Div">
+            <canvas id="temporalChart2"  class="esri-widget tempChart"></canvas>
+          </div>
+          <arcgis-map id="view22017Div" class="viewDiv"></arcgis-map>
+          <!--arcgis-map id="view22018Div" class="viewDiv"></arcgis-map-->
+          <arcgis-map id="view22021Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view22023Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view22025Div" class="viewDiv"></arcgis-map>
+
+          <!-- Row 3 -->
+          <div id="chart3Div">
+            <canvas id="temporalChart3"  class="esri-widget tempChart"></canvas>
+          </div>
+          <arcgis-map id="view32017Div" class="viewDiv"></arcgis-map>
+          <!--arcgis-map id="view32018Div" class="viewDiv"></arcgis-map-->
+          <arcgis-map id="view32021Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view32023Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view32025Div" class="viewDiv"></arcgis-map>
+
+          <!-- Row 4 -->
+          <div id="chart4Div">
+            <canvas id="temporalChart4"  class="esri-widget tempChart"></canvas>
+          </div>
+          <arcgis-map id="view42017Div" class="viewDiv"></arcgis-map>
+          <!--arcgis-map id="view42018Div" class="viewDiv"></arcgis-map-->
+          <arcgis-map id="view42021Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view42023Div" class="viewDiv"></arcgis-map>
+          <arcgis-map id="view42025Div" class="viewDiv"></arcgis-map>
+        </div>
         
-        <arcgis-map id="viewDiv" item-id="ed9c982d0d4d4dcf8415d3c46e20c4c7">
-          <arcgis-search position="top-right"></arcgis-search>
-          <arcgis-zoom position="bottom-right"></arcgis-zoom>
-        </arcgis-map>
       </calcite-shell>
     
     </div> <!-- Calcite-theme-->
