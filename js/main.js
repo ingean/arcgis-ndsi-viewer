@@ -1,5 +1,6 @@
 import Map from "@arcgis/core/Map.js";
 import MapView from "@arcgis/core/views/MapView.js";
+import TileLayer from "@arcgis/core/layers/TileLayer.js"
 import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer.js'
 import Basemap from '@arcgis/core/Basemap.js'
 import ImageryTileLayer from "@arcgis/core/layers/ImageryTileLayer.js";
@@ -55,18 +56,25 @@ const lofotenExtents = [
   })
 ]
 
+const hillshadeLayer = new TileLayer({
+  url: 'https://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheTerrengskygge/MapServer'
+})
+
+const basemapLayer = new VectorTileLayer({
+  url: 'https://services.geodataonline.no/arcgis/rest/services/GeocacheVector/GeocacheKanvasMork/VectorTileServer/resources/styles/root.json'
+})
+
 const baseMap = new Basemap({
-      baseLayers: [
-        new VectorTileLayer({
-          url: 'https://services.geodataonline.no/arcgis/rest/services/GeocacheVector/GeocacheKanvasMork/VectorTileServer/resources/styles/root.json'
-        })
-      ],
-      title: 'Bakgrunnskart (Mørk)'
-    })
+  baseLayers: [hillshadeLayer, basemapLayer],
+  title: 'Bakgrunnskart (Mørk)'
+})
+
+basemapLayer.blendMode = "multiply"
 
 const setupView = (place, year) => {
   const imgLayer = new ImageryTileLayer({
     url: `https://tiledimageservices.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/NDSI_mai${year}_mask_v4/ImageServer`,
+    //blendMode: "luminosity",
     renderer: {
       type: "class-breaks",
       field: "Value",
